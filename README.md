@@ -27,8 +27,11 @@ Just right-click and move your mouse in the following directions:
 
 1. Download this repository as a ZIP:  
    [Click Here](https://github.com/PrajwalMundargi/MouseGestureExtension/archive/refs/heads/main.zip)
+                                 
+                                OR
 
-2. Unzip the folder.
+2. Clone the Repository  
+    git clone https://github.com/PrajwalMundargi/MouseGestureExtension.git
 
 3. Go to `chrome://extensions/` in your Chrome browser.
 
