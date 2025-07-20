@@ -4,6 +4,7 @@ A lightweight mouse gesture extension for Chrome — inspired by Microsoft Edge'
 Navigate your browser using just your mouse!
 
 ## 🔧 Features
+
 - Go Back (←)
 - Go Forward (→)
 - Reload (↑ → ↓)
@@ -11,19 +12,21 @@ Navigate your browser using just your mouse!
 - Smooth Scrolling (hold right-click + move up/down)
 
 ## 🖱️ How to Use
+
 Just right-click and move your mouse in the following directions:
 
-| Gesture               | Action        |
-|-----------------------|---------------|
-| Move Left             | Go Back       |
-| Move Right            | Go Forward    |
-| Up → Down             | Reload Page   |
-| Right → Down          | Close Tab     |
-| Hold + Move Up/Down   | Smooth Scroll |
+| Gesture             | Action        |
+| ------------------- | ------------- |
+| Move Left           | Go Back       |
+| Move Right          | Go Forward    |
+| Up → Down           | Reload Page   |
+| Right → Down        | Close Tab     |
+| Hold + Move Up/Down | Smooth Scroll |
 
 ## ⚙️ How to Install
+
 1. Download this repository as a ZIP:  
-   [Click Here](https://github.com/your-username/chrome-gesture-extension/archive/refs/heads/main.zip)
+   [Click Here](https://github.com/PrajwalMundargi/MouseGestureExtension/archive/refs/heads/main.zip)
 
 2. Unzip the folder.
 
