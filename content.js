@@ -16,7 +16,7 @@ const ctx = trailCanvas.getContext('2d');
 function drawTrail(points) {
     ctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
     if (points.length < 2) return;
-    ctx.strokeStyle = 'red';
+    ctx.strokeStyle = 'white';
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(points[0].x, points[0].y);
@@ -27,7 +27,7 @@ function drawTrail(points) {
 }
 
 document.addEventListener('mousedown', (e) => {
-    if (e.button === 2) {  // Right click
+    if (e.button === 2) { // Right-click
         isDrawing = true;
         gesturePoints = [{ x: e.clientX, y: e.clientY }];
     }
@@ -37,6 +37,10 @@ document.addEventListener('mousemove', (e) => {
     if (isDrawing) {
         gesturePoints.push({ x: e.clientX, y: e.clientY });
         drawTrail(gesturePoints);
+
+        // Scroll with mouse trail
+        const deltaY = gesturePoints[gesturePoints.length - 1].y - gesturePoints[gesturePoints.length - 2].y;
+        window.scrollBy(0, deltaY);
     }
 });
 
@@ -45,9 +49,12 @@ document.addEventListener('mouseup', (e) => {
         isDrawing = false;
         const gesture = detectDirection(gesturePoints);
         const bucket = detectBucketShape(gesturePoints);
+        const uReload = detectUReloadGesture(gesturePoints);
         ctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
 
-        if (bucket) {
+        if (uReload) {
+            location.reload();
+        } else if (bucket) {
             sendGesture(bucket);
         } else if (gesture) {
             sendGesture(gesture);
@@ -101,6 +108,22 @@ function detectBucketShape(points) {
     return null;
 }
 
+// NEW: Detect "U" shaped gesture for reload
+function detectUReloadGesture(points) {
+    if (points.length < 10) return false;
+
+    const start = points[0];
+    const end = points[points.length - 1];
+    const midIndex = Math.floor(points.length / 2);
+    const mid = points[midIndex];
+
+    const wentDown = mid.y > start.y + 40 && mid.y > end.y + 40;
+    const wentUp = end.y < mid.y - 40 && start.y < mid.y - 40;
+    const xSpan = Math.abs(end.x - start.x) > 50;
+
+    return wentDown && wentUp && xSpan;
+}
+
 document.addEventListener('contextmenu', (e) => {
-    if (isDrawing) e.preventDefault();
+    if (isDrawing) e.preventDefault(); // Prevent right-click menu while drawing
 });
